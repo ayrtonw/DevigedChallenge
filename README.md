@@ -2,7 +2,7 @@
 
 How to use:
 
-After install extension you can use the follow url to add products to the cart:
+After install the extension you can use the follow url to add products to the cart:
 
 http://yourstore.com/checkout/cart/addbyproductid/product/599560
 
