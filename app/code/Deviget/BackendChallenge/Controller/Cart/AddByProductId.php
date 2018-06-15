@@ -23,7 +23,9 @@ class AddByProductId extends \Magento\Checkout\Controller\Cart\Add
              * Check product availability
              */
             if (!$product) {
-                return $this->goBack();
+                $this->messageManager->addError(__("This product is not available."));
+                //redirect to homepage
+                return $this->resultRedirectFactory->create()->setPath('');
             }
 
             $this->cart->addProduct($product, $params);
@@ -63,13 +65,14 @@ class AddByProductId extends \Magento\Checkout\Controller\Cart\Add
                 }
             }
 
-            //redirect to cart
-            return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+            //redirect to homepage
+            return $this->resultRedirectFactory->create()->setPath('');
         } catch (\Exception $e) {
             $this->messageManager->addException($e, __('We can\'t add this item to your shopping cart right now.'));
             $this->_objectManager->get(\Psr\Log\LoggerInterface::class)->critical($e);
-            //redirect to cart
-            return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+
+            //redirect to homepage
+            return $this->resultRedirectFactory->create()->setPath('');
         }
     }
 }
